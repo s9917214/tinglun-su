@@ -136,7 +136,7 @@ const observer = new IntersectionObserver((entries) => {
 // 為需要動畫的元素添加觀察
 document.addEventListener('DOMContentLoaded', () => {
     const animatedElements = document.querySelectorAll(
-        '.research-project, .publication-item, .patent-card, .expertise-category, .contact-card'
+        '.research-project, .publication-item, .patent-card, .award-card-compact, .early-achievements-compact, .expertise-category, .contact-card'
     );
 
     animatedElements.forEach(el => {
@@ -511,4 +511,288 @@ document.addEventListener('visibilitychange', () => {
             video.removeAttribute('data-was-playing');
         });
     }
+});
+
+// ==================== 照片轮播图功能 ====================
+function changeSlide(btn, direction) {
+    const carousel = btn.closest('.photo-carousel');
+    const images = carousel.querySelectorAll('.carousel-img');
+    const dots = carousel.querySelectorAll('.dot');
+
+    let currentIndex = 0;
+    images.forEach((img, index) => {
+        if (img.classList.contains('active')) {
+            currentIndex = index;
+        }
+    });
+
+    // 移除当前 active
+    images[currentIndex].classList.remove('active');
+    dots[currentIndex].classList.remove('active');
+
+    // 计算新索引
+    let newIndex = currentIndex + direction;
+    if (newIndex >= images.length) newIndex = 0;
+    if (newIndex < 0) newIndex = images.length - 1;
+
+    // 添加新 active
+    images[newIndex].classList.add('active');
+    dots[newIndex].classList.add('active');
+}
+
+function currentSlide(dot, index) {
+    const carousel = dot.closest('.photo-carousel');
+    const images = carousel.querySelectorAll('.carousel-img');
+    const dots = carousel.querySelectorAll('.dot');
+
+    // 移除所有 active
+    images.forEach(img => img.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+
+    // 添加新 active
+    images[index].classList.add('active');
+    dots[index].classList.add('active');
+}
+
+// 自动轮播（每5秒切换一次）
+document.addEventListener('DOMContentLoaded', () => {
+    const carousels = document.querySelectorAll('.photo-carousel');
+
+    carousels.forEach(carousel => {
+        setInterval(() => {
+            const nextBtn = carousel.querySelector('.carousel-btn.next');
+            if (nextBtn) {
+                changeSlide(nextBtn, 1);
+            }
+        }, 5000); // 5秒自动切换
+    });
+});
+
+// ==================== 智能照片检测和自动布局 ====================
+
+/**
+ * 检测文件夹中的照片（支持多种命名模式）
+ * @param {string} folder - 文件夹路径（如 "awards/2025"）
+ * @param {string} year - 年份标识（用于特殊命名模式）
+ * @returns {Promise<string[]>} - 返回存在的照片路径数组
+ */
+async function detectPhotos(folder, year) {
+    const basePatterns = ['award', 'photo', 'image'];
+    const specialPatterns = {
+        '2023': ['tdk', 'award'],
+        'early': ['medal', 'award']
+    };
+
+    // 确定使用的命名模式
+    const patterns = specialPatterns[year] || basePatterns;
+    const photos = [];
+
+    // 检测最多8张照片
+    for (let i = 1; i <= 8; i++) {
+        let found = false;
+
+        // 尝试不同的命名模式和扩展名
+        for (const pattern of patterns) {
+            for (const ext of ['jpg', 'jpeg', 'png', 'webp']) {
+                const photoPath = `images/${folder}/${pattern}${i}.${ext}`;
+
+                try {
+                    const exists = await checkImageExists(photoPath);
+                    if (exists) {
+                        photos.push(photoPath);
+                        found = true;
+                        break;
+                    }
+                } catch (e) {
+                    // 图片不存在，继续尝试
+                }
+            }
+            if (found) break;
+        }
+
+        // 如果连续缺失，停止检测
+        if (!found && i > 1) break;
+    }
+
+    return photos;
+}
+
+/**
+ * 检查图片是否存在
+ * @param {string} url - 图片URL
+ * @returns {Promise<boolean>} - 图片是否存在
+ */
+function checkImageExists(url) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = url;
+
+        // 设置超时
+        setTimeout(() => resolve(false), 2000);
+    });
+}
+
+/**
+ * 生成单张照片布局
+ */
+function generateSingleLayout(photos, caption, year) {
+    return `
+        <img src="${photos[0]}" alt="${year} Award Photo" class="award-img">
+        <p class="photo-caption">${caption}</p>
+    `;
+}
+
+/**
+ * 生成两张照片布局（左右分割）
+ */
+function generateTwoPhotoLayout(photos, caption, year) {
+    return `
+        <div class="photo-grid-two">
+            <img src="${photos[0]}" alt="${year} Award Photo 1" class="grid-img-two">
+            <img src="${photos[1]}" alt="${year} Award Photo 2" class="grid-img-two">
+        </div>
+        <p class="photo-caption">${caption}</p>
+    `;
+}
+
+/**
+ * 生成三张照片拼贴布局（1大2小）
+ */
+function generateCollageLayout(photos, caption, year) {
+    return `
+        <div class="photo-grid">
+            <img src="${photos[0]}" alt="${year} Award Main Photo" class="grid-img main">
+            <div class="grid-side">
+                <img src="${photos[1]}" alt="${year} Award Photo 2" class="grid-img">
+                <img src="${photos[2]}" alt="${year} Award Photo 3" class="grid-img">
+            </div>
+        </div>
+        <p class="photo-caption">${caption}</p>
+    `;
+}
+
+/**
+ * 生成四张照片网格布局（2x2）
+ */
+function generateGridLayout(photos, caption, year) {
+    return `
+        <div class="photo-grid-four">
+            <img src="${photos[0]}" alt="${year} Award Photo 1" class="grid-img-four">
+            <img src="${photos[1]}" alt="${year} Award Photo 2" class="grid-img-four">
+            <img src="${photos[2]}" alt="${year} Award Photo 3" class="grid-img-four">
+            <img src="${photos[3]}" alt="${year} Award Photo 4" class="grid-img-four">
+        </div>
+        <p class="photo-caption">${caption}</p>
+    `;
+}
+
+/**
+ * 生成轮播图布局（5张及以上）
+ */
+function generateCarouselLayout(photos, caption, year) {
+    const imagesHTML = photos.map((photo, index) =>
+        `<img src="${photo}" alt="${year} Award Photo ${index + 1}" class="carousel-img ${index === 0 ? 'active' : ''}">`
+    ).join('');
+
+    const dotsHTML = photos.map((_, index) =>
+        `<span class="dot ${index === 0 ? 'active' : ''}" onclick="currentSlide(this, ${index})"></span>`
+    ).join('');
+
+    return `
+        <div class="photo-carousel">
+            <div class="carousel-images">
+                ${imagesHTML}
+            </div>
+            <button class="carousel-btn prev" onclick="changeSlide(this, -1)">‹</button>
+            <button class="carousel-btn next" onclick="changeSlide(this, 1)">›</button>
+            <div class="carousel-dots">
+                ${dotsHTML}
+            </div>
+        </div>
+        <p class="photo-caption">${caption}</p>
+    `;
+}
+
+/**
+ * 生成占位图（当没有照片时）
+ */
+function generatePlaceholder(caption) {
+    return `
+        <div class="photo-placeholder">
+            <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+            </svg>
+            <p>No photos available</p>
+        </div>
+        <p class="photo-caption">${caption}</p>
+    `;
+}
+
+/**
+ * 初始化照片画廊（智能检测和布局）
+ */
+async function initPhotoGalleries() {
+    const galleries = document.querySelectorAll('.photo-gallery');
+
+    for (const gallery of galleries) {
+        const awardPhoto = gallery.closest('.award-photo');
+        const folder = awardPhoto.dataset.folder;
+        const year = awardPhoto.dataset.year;
+        const caption = gallery.dataset.caption;
+
+        // 显示加载状态
+        gallery.innerHTML = '<p style="text-align: center; color: #7f8c8d; padding: 2rem;">Loading photos...</p>';
+
+        try {
+            // 检测照片
+            const photos = await detectPhotos(folder, year);
+
+            // 根据照片数量生成不同布局
+            let layoutHTML;
+            if (photos.length === 0) {
+                layoutHTML = generatePlaceholder(caption);
+            } else if (photos.length === 1) {
+                layoutHTML = generateSingleLayout(photos, caption, year);
+            } else if (photos.length === 2) {
+                layoutHTML = generateTwoPhotoLayout(photos, caption, year);
+            } else if (photos.length === 3) {
+                layoutHTML = generateCollageLayout(photos, caption, year);
+            } else if (photos.length === 4) {
+                layoutHTML = generateGridLayout(photos, caption, year);
+            } else {
+                layoutHTML = generateCarouselLayout(photos, caption, year);
+            }
+
+            gallery.innerHTML = layoutHTML;
+
+            // 如果是轮播图，启动自动播放
+            if (photos.length >= 5) {
+                const carousel = gallery.querySelector('.photo-carousel');
+                if (carousel) {
+                    setInterval(() => {
+                        const nextBtn = carousel.querySelector('.carousel-btn.next');
+                        if (nextBtn) {
+                            changeSlide(nextBtn, 1);
+                        }
+                    }, 5000);
+                }
+            }
+
+        } catch (error) {
+            console.error(`Error loading photos for ${folder}:`, error);
+            gallery.innerHTML = generatePlaceholder(caption);
+        }
+    }
+}
+
+// 页面加载完成后初始化照片画廊
+document.addEventListener('DOMContentLoaded', () => {
+    // 延迟初始化，确保DOM完全加载
+    setTimeout(() => {
+        initPhotoGalleries();
+    }, 300);
 });
