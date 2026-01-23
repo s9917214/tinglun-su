@@ -195,34 +195,108 @@ if (quickStats) {
     statsObserver.observe(quickStats);
 }
 
-// ==================== 影片懶加載 ====================
-const videoWrappers = document.querySelectorAll('.video-wrapper');
+// ==================== YouTube 滾動自動播放 ====================
+let youtubePlayers = {};
 
-const videoObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const iframe = entry.target.querySelector('iframe');
-            const video = entry.target.querySelector('video');
+// 1. 動態載入 YouTube IFrame API
+const tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+const firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-            if (iframe && iframe.dataset.src) {
-                iframe.src = iframe.dataset.src;
-                iframe.removeAttribute('data-src');
+// 2. API 準備好後會呼叫此函數
+window.onYouTubeIframeAPIReady = function() {
+    const playerDivs = document.querySelectorAll('.youtube-player');
+    playerDivs.forEach(playerDiv => {
+        const videoId = playerDiv.dataset.videoId;
+        const playerId = playerDiv.id;
+
+        const player = new YT.Player(playerId, {
+            height: '100%',
+            width: '100%',
+            videoId: videoId,
+            playerVars: {
+                'autoplay': 1,
+                'mute': 1,
+                'controls': 0,
+                'loop': 1,
+                'playlist': videoId, // loop需要playlist
+                'modestbranding': 1,
+                'showinfo': 0,
+                'rel': 0
+            },
+            events: {
+                'onReady': onPlayerReady
             }
-
-            if (video && video.dataset.src) {
-                video.src = video.dataset.src;
-                video.removeAttribute('data-src');
-                video.load();
-            }
-
-            videoObserver.unobserve(entry.target);
-        }
+        });
+        youtubePlayers[playerId] = player;
     });
-}, { threshold: 0.1 });
+};
 
-videoWrappers.forEach(wrapper => {
-    videoObserver.observe(wrapper);
+// 3. 播放器準備好後的處理
+function onPlayerReady(event) {
+    const player = event.target;
+    const playerWrapper = player.getIframe().closest('.video-wrapper');
+
+    // 建立取消靜音按鈕
+    const unmuteButton = document.createElement('div');
+    unmuteButton.className = 'unmute-button';
+    unmuteButton.innerHTML = `<svg viewBox="0 0 24 24">
+        <path fill="currentColor" d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.84 14,18.7V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.76 16.5,12M3,9V15H7L12,20V4L7,9H3Z" />
+        <path fill="currentColor" d="M1.7,14.7L3.1,16.1L4.8,14.4L6.5,16.1L7.9,14.7L6.2,13L7.9,11.3L6.5,9.9L4.8,11.6L3.1,9.9L1.7,11.3L3.4,13L1.7,14.7Z" style="transform: scale(0.6) translate(28px, 6px);" />
+    </svg>`;
+    playerWrapper.appendChild(unmuteButton);
+
+    unmuteButton.addEventListener('click', () => {
+        player.unMute();
+        unmuteButton.classList.add('hidden');
+    });
+
+    // 設定 Intersection Observer
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                player.playVideo();
+            } else {
+                player.pauseVideo();
+            }
+        });
+    }, { threshold: 0.8 }); // 當80%的影片可見時觸發
+
+    videoObserver.observe(playerWrapper);
+}
+
+
+// ==================== 非YouTube影片懶加載 ====================
+document.addEventListener('DOMContentLoaded', () => {
+    const otherVideoWrappers = document.querySelectorAll('.video-wrapper:not([data-video-type="youtube"])');
+    const otherVideoObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const iframe = entry.target.querySelector('iframe');
+                const video = entry.target.querySelector('video');
+
+                if (iframe && iframe.dataset.src) {
+                    iframe.src = iframe.dataset.src;
+                    iframe.removeAttribute('data-src');
+                }
+
+                if (video && video.dataset.src) {
+                    video.src = video.dataset.src;
+                    video.removeAttribute('data-src');
+                    video.load();
+                }
+
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    otherVideoWrappers.forEach(wrapper => {
+        otherVideoObserver.observe(wrapper);
+    });
 });
+
 
 // ==================== 平滑滾動到頂部按鈕 ====================
 function createScrollToTopButton() {
@@ -504,11 +578,11 @@ document.addEventListener('visibilitychange', () => {
                 video.dataset.wasPlaying = 'true';
             }
         });
-    } else {
-        // 恢復播放（可選）
-        document.querySelectorAll('video[data-was-playing="true"]').forEach(video => {
-            // video.play(); // 取消註解以自動恢復播放
-            video.removeAttribute('data-was-playing');
+        // 暫停所有YouTube影片
+        Object.values(youtubePlayers).forEach(player => {
+            if (player && typeof player.pauseVideo === 'function' && player.getPlayerState() === 1) {
+                player.pauseVideo();
+            }
         });
     }
 });
