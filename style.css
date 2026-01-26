@@ -222,7 +222,7 @@ body {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
 }
 
 .researcher-name {
@@ -230,7 +230,7 @@ body {
     font-size: 3rem;
     font-weight: 400;
     color: var(--color-primary);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
     line-height: 1.2;
 }
 

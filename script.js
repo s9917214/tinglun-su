@@ -88,24 +88,9 @@ if (menuToggle && navMenu) {
     });
 }
 
-// ==================== 語言切換功能 ====================
-const langButtons = document.querySelectorAll('.lang-btn');
-
-langButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        // 移除所有 active 類
-        langButtons.forEach(btn => btn.classList.remove('active'));
-        // 添加 active 到當前按鈕
-        this.classList.add('active');
-
-        const selectedLang = this.getAttribute('data-lang');
-        console.log(`Language switched to: ${selectedLang}`);
-
-        // 這裡可以添加實際的語言切換邏輯
-        // 例如：載入不同的語言檔案或切換顯示的內容
-    });
+document.addEventListener('DOMContentLoaded', () => {
+    initializePage();
 });
-
 // ==================== 滾動顯示動畫 ====================
 const observerOptions = {
     threshold: 0.1,
@@ -864,7 +849,39 @@ async function initPhotoGalleries() {
 }
 
 // 页面加载完成后初始化照片画廊
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', initializePage);
+
+function initializePage() {
     // 立即初始化照片画廊
     initPhotoGalleries();
-});
+    // Call other DOMContentLoaded related functions here
+    updateGoogleDriveVideos(); // Ensure Google Drive videos are updated
+    addCopyBibTexFeature(); // Initialize BibTeX copy feature
+
+    // Initialize carousel auto-play for existing carousels
+    const carousels = document.querySelectorAll('.photo-carousel');
+    carousels.forEach(carousel => {
+        setInterval(() => {
+            const nextBtn = carousel.querySelector('.carousel-btn.next');
+            if (nextBtn) {
+                changeSlide(nextBtn, 1);
+            }
+        }, 5000); // 5秒自动切换
+    });
+
+    const animatedElements = document.querySelectorAll(
+        '.research-project, .publication-item, .patent-card, .award-card-compact, .early-achievements-compact, .expertise-category, .contact-card'
+    );
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+
+    // 觸發統計數字動畫
+    const quickStats = document.querySelector('.quick-stats');
+    if (quickStats) {
+        statsObserver.observe(quickStats);
+    }
+}

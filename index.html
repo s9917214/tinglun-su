@@ -6,6 +6,72 @@
     <meta name="description" content="Academic Portfolio - Research in Quality Engineering and AI">
     <title>Ting-Lun Su Research Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Research Projects 互動樣式 - 展開更多細節 */
+        .project-details-expandable {
+            display: none;
+            flex-direction: column;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .research-project.details-expanded .project-details-expandable {
+            display: flex;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .btn-expand-details {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 1rem;
+            width: 100%;
+            text-align: center;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-expand-details:hover {
+            background-color: var(--bg-tertiary);
+            color: var(--color-primary);
+            border-color: var(--color-accent);
+        }
+
+        .btn-expand-details .arrow {
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 6px solid currentColor;
+            transition: transform 0.3s ease;
+        }
+
+        .research-project.details-expanded .btn-expand-details .arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Company Logo 樣式 */
+        .company-logo {
+            height: 30px;
+            width: auto;
+            margin-right: 10px;
+            vertical-align: middle;
+            object-fit: contain;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
     <!-- 頂部資訊欄 -->
@@ -13,10 +79,6 @@
         <div class="container">
             <div class="top-bar-content">
                 <div class="institution" data-lang-key="ncut">National Chin-Yi University of Technology</div>
-                <div class="lang-switch">
-                    <button class="lang-btn active" data-lang="zh" data-lang-key="lang-zh">中文</button>
-                    <button class="lang-btn" data-lang="en" data-lang-key="lang-en">English</button>
-                </div>
             </div>
         </div>
     </div>
@@ -53,16 +115,14 @@
             <div class="overview-grid">
                 <div class="overview-content">
                     <div class="researcher-tag" data-lang-key="overview-tag">Intelligent Automation Engineer</div>
-                    <h1 class="researcher-name" data-lang-key="researcher-name">蘇挺綸<br><span class="name-en">Ting-Lun Su</span></h1>
+                    <h1 class="researcher-name" data-lang-key="researcher-name">Ting-Lun Su<br><span class="name-en">蘇挺綸</span></h1>
 
                     <div class="research-interests">
                         <h3 data-lang-key="overview-interests-title">Research Interests</h3>
                         <ul class="interests-list">
-                            <li data-lang-key="overview-interest-1">AI-Driven Robotics & Intelligent Manufacturing</li>
-                            <li data-lang-key="overview-interest-2">Large Language Models (LLM) & MCP Applications</li>
-                            <li data-lang-key="overview-interest-3">Computer Vision & AI Visual Detection</li>
-                            <li data-lang-key="overview-interest-4">Ant Colony Optimization & Path Planning</li>
-                            <li data-lang-key="overview-interest-5">Smart CNC & Flexible Manufacturing Systems</li>
+                            <li data-lang-key="overview-interest-1">AI-Driven Robotics & Intelligent Manufacturing & Automation</li>
+                            <li data-lang-key="overview-interest-2">Large Language Models (LLM) & MCP Applications & AI Visual Detection</li>
+                            <li data-lang-key="overview-interest-3">Smart CNC & Flexible Manufacturing Systems</li>
                         </ul>
                     </div>
 
@@ -125,10 +185,6 @@
                             <div class="info-item">
                                 <span class="info-label" data-lang-key="overview-contact-orcid">ORCID</span>
                                 <a href="https://orcid.org/0009-0008-8028-896X" target="_blank">0009-0008-8028-896X</a>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label" data-lang-key="overview-contact-toeic">TOEIC</span>
-                                <span>660</span>
                             </div>
                         </div>
 
@@ -281,7 +337,7 @@
                         <span class="project-status status-completed" data-lang-key="research-status-ongoing">Ongoing</span>
                     </div>
                     <h3 class="project-title" data-lang-key="research-1-title">Visual Measurement Inspection Station and Generative AI Navigation Assistance System</h3>
-                    <p class="project-subtitle" data-lang-key="research-1-company">TURVO INTERNATIONAL CO., LTD.</p>
+                <p class="project-subtitle"><img src="images/Company_logo/TURVO.png" alt="TURVO Logo" class="company-logo"><span data-lang-key="research-1-company">TURVO INTERNATIONAL CO., LTD.</span></p>
                 </div>
 
                 <div class="project-body">
@@ -302,11 +358,11 @@
                         <div class="detail-section">
                             <h4 data-lang-key="research-tech-title">Key Technologies</h4>
                             <div class="tech-tags">
+                                <span class="tech-tag">Real production line</span>
                                 <span class="tech-tag">LLM Integration</span>
                                 <span class="tech-tag">MCP Protocol</span>
                                 <span class="tech-tag">Computer Vision</span>
                                 <span class="tech-tag">AI Navigation</span>
-                                <span class="tech-tag">Python</span>
                                 <span class="tech-tag">Visual Inspection</span>
                             </div>
                         </div>
@@ -315,28 +371,35 @@
                             <h4 data-lang-key="research-outcomes-title">Research Outcomes</h4>
                             <div class="outcomes-grid">
                                 <div class="outcome-card">
-                                    <div class="outcome-value">LLM</div>
-                                    <div class="outcome-label" data-lang-key="research-1-outcome-1">AI-Powered Navigation</div>
+                                    <div class="outcome-value">-52.3%</div>
+                                    <div class="outcome-label" data-lang-key="research-1-outcome-1">Single part inspection time</div>
                                 </div>
                                 <div class="outcome-card">
-                                    <div class="outcome-value">MCP</div>
-                                    <div class="outcome-label" data-lang-key="research-1-outcome-2">Protocol Integration</div>
+                                    <div class="outcome-value">-22.7%</div>
+                                    <div class="outcome-label" data-lang-key="research-1-outcome-2">Defect rate of workpieces</div>
                                 </div>
                                 <div class="outcome-card">
-                                    <div class="outcome-value">Vision</div>
-                                    <div class="outcome-label" data-lang-key="research-1-outcome-3">Automated Inspection</div>
+                                    <div class="outcome-value">MCP Real-time Analysis</div>
+                                    <div class="outcome-label" data-lang-key="research-1-outcome-3">Measurement, defect rate, MES data</div>
                                 </div>
                                 <div class="outcome-card">
-                                    <div class="outcome-value">2025</div>
-                                    <div class="outcome-label" data-lang-key="research-1-outcome-4">Latest Technology</div>
+                                    <div class="outcome-value">Token Cost -33.9% </div>
+                                    <div class="outcome-label" data-lang-key="research-1-outcome-4">MCP Hybrid Model</div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="detail-section">
-                            <h4 data-lang-key="research-role-title">Role & Responsibilities</h4>
-                            <p class="related-pub" data-lang-key="research-1-role">Project Lead: Managing project planning, technical design, and communication with industrial stakeholders. Core developer of LLM-MCP integration system.</p>
+                        <div class="project-details-expandable">
+                            <div class="detail-section">
+                                <h4 data-lang-key="research-role-title">Role & Responsibilities</h4>
+                                <p class="related-pub" data-lang-key="research-1-role">Project Lead: Managing project planning, technical design, and communication with industrial stakeholders. Core developer of LLM-MCP integration system.</p>
+                            </div>
                         </div>
+
+                        <button class="btn-expand-details">
+                            <span class="btn-text" data-lang-key="show-more">show-more</span>
+                            <span class="arrow"></span>
+                        </button>
                     </div>
                 </div>
             </article>
@@ -349,7 +412,7 @@
                         <span class="project-status status-completed" data-lang-key="research-status-completed">Completed</span>
                     </div>
                     <h3 class="project-title" data-lang-key="research-2-title">Smart CNC Flexible Manufacturing Factory (Phase 1, 2 & 3)</h3>
-                    <p class="project-subtitle" data-lang-key="research-2-company">IC STAR INDUSTRIAL CO., LTD.</p>
+                <p class="project-subtitle"><img src="images/Company_logo/IC_STAR.png" alt="IC STAR Logo" class="company-logo"><span data-lang-key="research-2-company">IC STAR INDUSTRIAL CO., LTD.</span></p>
                 </div>
 
                 <div class="project-body">
@@ -370,12 +433,13 @@
                         <div class="detail-section">
                             <h4 data-lang-key="research-tech-title">Key Technologies</h4>
                             <div class="tech-tags">
+                                <span class="tech-tag">Real production line</span>
                                 <span class="tech-tag">CNC Systems</span>
                                 <span class="tech-tag">Robotic Arms</span>
                                 <span class="tech-tag">PLC Control</span>
                                 <span class="tech-tag">System Integration</span>
                                 <span class="tech-tag">Factory Automation</span>
-                                <span class="tech-tag">IoT</span>
+                                <span class="tech-tag">AIoT</span>
                             </div>
                         </div>
 
@@ -383,28 +447,35 @@
                             <h4 data-lang-key="research-outcomes-title">Research Outcomes</h4>
                             <div class="outcomes-grid">
                                 <div class="outcome-card">
-                                    <div class="outcome-value">80%</div>
+                                    <div class="outcome-value">-80%</div>
                                     <div class="outcome-label" data-lang-key="research-2-outcome-1">Manpower Reduction</div>
                                 </div>
                                 <div class="outcome-card">
-                                    <div class="outcome-value">20</div>
-                                    <div class="outcome-label" data-lang-key="research-2-outcome-2">CNC Machines</div>
+                                    <div class="outcome-value">20 CNC & 10 Robotics </div>
+                                    <div class="outcome-label" data-lang-key="research-2-outcome-2">Number of processing machines</div>
                                 </div>
                                 <div class="outcome-card">
-                                    <div class="outcome-value">10</div>
+                                    <div class="outcome-value">10 production lines</div>
                                     <div class="outcome-label" data-lang-key="research-2-outcome-3">Robotic Arms</div>
                                 </div>
                                 <div class="outcome-card">
-                                    <div class="outcome-value">42</div>
-                                    <div class="outcome-label" data-lang-key="research-2-outcome-4">Team Members</div>
+                                    <div class="outcome-value">2024/12 to present</div>
+                                    <div class="outcome-label" data-lang-key="research-2-outcome-4">Successful mass production</div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="detail-section">
-                            <h4 data-lang-key="research-scale-title">Project Scale</h4>
-                            <p class="related-pub" data-lang-key="research-2-scale">Three-phase implementation redesigning Plant A and building Plant B. Achieved 80% reduction in manpower and significantly enhanced automation efficiency.</p>
+                        <div class="project-details-expandable">
+                            <div class="detail-section">
+                                <h4 data-lang-key="research-scale-title">Project Scale</h4>
+                                <p class="related-pub" data-lang-key="research-2-scale">Three-phase implementation redesigning Plant A and building Plant B. Achieved 80% reduction in manpower and significantly enhanced automation efficiency.</p>
+                            </div>
                         </div>
+
+                        <button class="btn-expand-details">
+                            <span class="btn-text" data-lang-key="show-more">show-more</span>
+                            <span class="arrow"></span>
+                        </button>
                     </div>
                 </div>
             </article>
@@ -417,7 +488,7 @@
                         <span class="project-status status-completed" data-lang-key="research-status-completed">Completed</span>
                     </div>
                     <h3 class="project-title" data-lang-key="research-3-title">Automated Robot Arm Forging Spraying System with AI-Based Path Generation</h3>
-                    <p class="project-subtitle" data-lang-key="research-3-company">IC STAR INDUSTRIAL CO., LTD.</p>
+                <p class="project-subtitle"><img src="images/Company_logo/IC_STAR.png" alt="IC STAR Logo" class="company-logo"><span data-lang-key="research-3-company">IC STAR INDUSTRIAL CO., LTD.</span></p>
                 </div>
 
                 <div class="project-body">
@@ -438,6 +509,7 @@
                         <div class="detail-section">
                             <h4 data-lang-key="research-tech-title">Key Technologies</h4>
                             <div class="tech-tags">
+                                <span class="tech-tag">Real production line</span>
                                 <span class="tech-tag">Ant Colony Optimization</span>
                                 <span class="tech-tag">Bayesian Optimization</span>
                                 <span class="tech-tag">Path Planning</span>
@@ -451,28 +523,35 @@
                             <h4 data-lang-key="research-outcomes-title">Research Outcomes</h4>
                             <div class="outcomes-grid">
                                 <div class="outcome-card">
-                                    <div class="outcome-value">27%</div>
-                                    <div class="outcome-label" data-lang-key="research-3-outcome-1">Higher Throughput</div>
+                                    <div class="outcome-value">+27%</div>
+                                    <div class="outcome-label" data-lang-key="research-3-outcome-1">Production efficiency</div>
                                 </div>
                                 <div class="outcome-card">
-                                    <div class="outcome-value">91%</div>
-                                    <div class="outcome-label" data-lang-key="research-3-outcome-2">Defect Reduction</div>
+                                    <div class="outcome-value">65PPM(-91%)</div>
+                                    <div class="outcome-label" data-lang-key="research-3-outcome-2">Forging quality (PPM)</div>
                                 </div>
                                 <div class="outcome-card">
-                                    <div class="outcome-value">21%</div>
-                                    <div class="outcome-label" data-lang-key="research-3-outcome-3">Cost Savings</div>
+                                    <div class="outcome-value">+21% in Three production lines</div>
+                                    <div class="outcome-label" data-lang-key="research-3-outcome-3">Energy utilization</div>
                                 </div>
                                 <div class="outcome-card">
-                                    <div class="outcome-value">97.3%</div>
-                                    <div class="outcome-label" data-lang-key="research-3-outcome-4">Trajectory Accuracy</div>
+                                    <div class="outcome-value">2024/07 to present</div>
+                                    <div class="outcome-label" data-lang-key="research-3-outcome-4">Time to put into mass production</div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="detail-section">
-                            <h4 data-lang-key="research-publications-title">Publications</h4>
-                            <p class="related-pub" data-lang-key="research-3-publication">Ta-Jen Peng, Peng-Jen Chen, Ting-Lun Su, Chung-Chieh Lin. "Automated spray path planning based on Bayesian optimization and ant colony optimization." <em>The International Journal of Advanced Manufacturing Technology</em>, Springer, vol. 139, pp. 5491–5509, Aug. 2025. <a href="https://doi.org/10.1007/s00170-025-16162-x" target="_blank">[DOI]</a></p>
+                        <div class="project-details-expandable">
+                            <div class="detail-section">
+                                <h4 data-lang-key="research-publications-title">Publications</h4>
+                                <p class="related-pub" data-lang-key="research-3-publication">Ta-Jen Peng, Peng-Jen Chen, Ting-Lun Su, Chung-Chieh Lin. "Automated spray path planning based on Bayesian optimization and ant colony optimization." <em>The International Journal of Advanced Manufacturing Technology</em>, Springer, vol. 139, pp. 5491–5509, Aug. 2025. <a href="https://doi.org/10.1007/s00170-025-16162-x" target="_blank">[DOI]</a></p>
+                            </div>
                         </div>
+
+                        <button class="btn-expand-details">
+                            <span class="btn-text" data-lang-key="show-more">show-more</span>
+                            <span class="arrow"></span>
+                        </button>
                     </div>
                 </div>
             </article>
@@ -485,21 +564,12 @@
                         <span class="project-status status-completed" data-lang-key="research-status-completed">Completed</span>
                     </div>
                     <h3 class="project-title" data-lang-key="research-4-title">Automatic CNC Chip Entanglement Detection System</h3>
-                    <p class="project-subtitle" data-lang-key="research-4-company">Industrial Technology Research Institute (ITRI)</p>
+                <p class="project-subtitle"><img src="images/Company_logo/ITRI.png" alt="ITRI Logo" class="company-logo"><span data-lang-key="research-4-company">Industrial Technology Research Institute (ITRI)</span></p>
                 </div>
 
                 <div class="project-body">
                     <div class="project-video-container">
-                        <!-- Google Drive 影片 - 請替換為實際影片ID -->
-                        <div class="video-wrapper" data-video-type="gdrive">
-                            <iframe
-                                src="https://drive.google.com/file/d/1EXAMPLE_FILE_ID/preview"
-                                allow="autoplay">
-                            </iframe>
-                            <div class="video-note" data-lang-key="research-gdrive-note">
-                                <strong>Note:</strong> 替換 "1EXAMPLE_FILE_ID" 為你的 Google Drive 檔案 ID
-                            </div>
-                        </div>
+                        <img src="images/detection.png" alt="Automatic CNC Chip Entanglement Detection System" style="width: 100%; height: auto; border-radius: 8px;">
                         <p class="video-caption" data-lang-key="research-4-fig">Figure 4: YOLO-based real-time chip entanglement detection in CNC operations</p>
                     </div>
 
@@ -512,12 +582,12 @@
                         <div class="detail-section">
                             <h4 data-lang-key="research-tech-title">Key Technologies</h4>
                             <div class="tech-tags">
-                                <span class="tech-tag">YOLO</span>
+                                <span class="tech-tag">YOLO Detection</span>
                                 <span class="tech-tag">Computer Vision</span>
-                                <span class="tech-tag">Real-time Detection</span>
+                                <span class="tech-tag">CNC Mill-Turn Machine</span>
                                 <span class="tech-tag">Smart Manufacturing</span>
-                                <span class="tech-tag">AI Visual Detection</span>
-                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">High-efficiency machining</span>
+                                <span class="tech-tag">Net-zero carbon emissions</span>
                             </div>
                         </div>
 
@@ -543,10 +613,17 @@
                             </div>
                         </div>
 
-                        <div class="detail-section">
-                            <h4 data-lang-key="research-impact-title">Impact</h4>
-                            <p class="related-pub" data-lang-key="research-4-impact">Reduced rework and maintenance costs while improving automation efficiency in unmanned smart manufacturing environments.</p>
+                        <div class="project-details-expandable">
+                            <div class="detail-section">
+                                <h4 data-lang-key="research-impact-title">Impact</h4>
+                                <p class="related-pub" data-lang-key="research-4-impact">Reduced rework and maintenance costs while improving automation efficiency in unmanned smart manufacturing environments.</p>
+                            </div>
                         </div>
+
+                        <button class="btn-expand-details">
+                            <span class="btn-text" data-lang-key="show-more">show-more</span>
+                            <span class="arrow"></span>
+                        </button>
                     </div>
                 </div>
             </article>
@@ -559,7 +636,7 @@
                         <span class="project-status status-completed" data-lang-key="research-status-ongoing">Ongoing</span>
                     </div>
                     <h3 class="project-title" data-lang-key="research-5-title">Development and Commercialization of Automatic Mushroom Stem-Cutting System</h3>
-                    <p class="project-subtitle" data-lang-key="research-5-company">University Social Responsibility Project with Local Farmers</p>
+                <p class="project-subtitle"><img src="images/Company_logo/USR.png" alt="USR Logo" class="company-logo"><span data-lang-key="research-5-company">University Social Responsibility Project with Local Farmers</span></p>
                 </div>
 
                 <div class="project-body">
@@ -568,7 +645,7 @@
                         <div class="video-wrapper" data-video-type="youtube">
                             <div id="player-bMii8-GB3Io" class="youtube-player" data-video-id="bMii8-GB3Io"></div>
                         </div>
-                        <p class="video-caption" data-lang-key="research-5-fig">Figure 5: Smart mushroom stem-cutting machine with AI-based control system</p>
+                        <p class="video-caption" data-lang-key="research-5-fig">Figure 5: Smart mushroom stem-cutting machine </p>
                     </div>
 
                     <div class="project-details">
@@ -580,12 +657,13 @@
                         <div class="detail-section">
                             <h4 data-lang-key="research-tech-title">Key Technologies</h4>
                             <div class="tech-tags">
+                                <span class="tech-tag">Real production line</span>
                                 <span class="tech-tag" data-lang-key="research-5-tech-1">Agricultural Automation</span>
-                                <span class="tech-tag" data-lang-key="research-5-tech-2">AI Cutting Control</span>
+                                <span class="tech-tag" data-lang-key="research-5-tech-2">Mushroom Automation </span>
                                 <span class="tech-tag" data-lang-key="research-5-tech-3">Mechanical Design</span>
-                                <span class="tech-tag">SolidWorks</span>
+                                <span class="tech-tag">Stem-Cutting Machine </span>
                                 <span class="tech-tag" data-lang-key="research-5-tech-4">Auto-Sorting</span>
-                                <span class="tech-tag" data-lang-key="research-5-tech-5">USR Project</span>
+                                <span class="tech-tag" data-lang-key="research-5-tech-5">Local industries</span>
                             </div>
                         </div>
 
@@ -593,28 +671,35 @@
                             <h4 data-lang-key="research-outcomes-title">Research Outcomes</h4>
                             <div class="outcomes-grid">
                                 <div class="outcome-card">
-                                    <div class="outcome-value">3</div>
-                                    <div class="outcome-label" data-lang-key="research-5-outcome-1">Manufacturers Adopted</div>
+                                    <div class="outcome-value">3 farms used</div>
+                                    <div class="outcome-label" data-lang-key="research-5-outcome-1">Commercialization</div>
                                 </div>
                                 <div class="outcome-card">
                                     <div class="outcome-value">2</div>
                                     <div class="outcome-label" data-lang-key="research-5-outcome-2">Patents Granted</div>
                                 </div>
                                 <div class="outcome-card">
-                                    <div class="outcome-value" data-lang-key="research-5-outcome-3-val">Mass</div>
-                                    <div class="outcome-label" data-lang-key="research-5-outcome-3">Production Ready</div>
+                                    <div class="outcome-value">-36%</div>
+                                    <div class="outcome-label" data-lang-key="research-5-outcome-3">Reduce the number of farmers</div>
                                 </div>
                                 <div class="outcome-card">
-                                    <div class="outcome-value">USR</div>
-                                    <div class="outcome-label" data-lang-key="research-5-outcome-4">Social Impact</div>
+                                    <div class="outcome-value">±1%</div>
+                                    <div class="outcome-label" data-lang-key="research-5-outcome-4">mushroom damage rate</div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="detail-section">
-                            <h4 data-lang-key="research-patents-title">Patents & Exhibitions</h4>
-                            <p class="related-pub" data-lang-key="research-5-patents">Two patents granted (I891383, M659734). Demonstrated at 2025 Taipei USR EXPO showcasing sustainable agricultural automation.</p>
+                        <div class="project-details-expandable">
+                            <div class="detail-section">
+                                <h4 data-lang-key="research-patents-title">Patents & Exhibitions</h4>
+                                <p class="related-pub" data-lang-key="research-5-patents">Two patents granted (I891383, M659734). Demonstrated at 2025 Taipei USR EXPO showcasing sustainable agricultural automation.</p>
+                            </div>
                         </div>
+
+                        <button class="btn-expand-details">
+                            <span class="btn-text" data-lang-key="show-more">show-more</span>
+                            <span class="arrow"></span>
+                        </button>
                     </div>
                 </div>
             </article>
@@ -627,14 +712,14 @@
                         <span class="project-status status-completed" data-lang-key="research-status-ongoing">Ongoing</span>
                     </div>
                     <h3 class="project-title" data-lang-key="research-6-title">3D Vision-Guided Picking and Robotic System Integration Development</h3>
-                    <p class="project-subtitle" data-lang-key="research-6-company">LIEBHERR-Verzahntechnik GmbH & PONGI Gear Expert CO., LTD.</p>
+                <p class="project-subtitle"><img src="images/Company_logo/LIEBHERR.png" alt="LIEBHERR Logo" class="company-logo"><span data-lang-key="research-6-company">LIEBHERR-Verzahntechnik GmbH & PONGI Gear Expert CO., LTD.</span></p>
                 </div>
 
                 <div class="project-body">
                     <div class="project-video-container">
                         <!-- YouTube 影片 - 更新為div預留位置 -->
                         <div class="video-wrapper" data-video-type="youtube">
-                            <div id="player-sP_Za7tD5eg" class="youtube-player" data-video-id="sP_Za7tD5eg"></div>
+                            <div id="player-eQcxcz-4NZg" class="youtube-player" data-video-id="eQcxcz-4NZg"></div>
                         </div>
                         <p class="video-caption" data-lang-key="research-6-fig">Figure 6: LIEBHERR LHRobotics.Vision random picking system with 3D vision coordination</p>
                     </div>
@@ -648,12 +733,12 @@
                         <div class="detail-section">
                             <h4 data-lang-key="research-tech-title">Key Technologies</h4>
                             <div class="tech-tags">
-                                <span class="tech-tag" data-lang-key="research-6-tech-1">3D Vision</span>
-                                <span class="tech-tag" data-lang-key="research-6-tech-2">Random Picking</span>
+                                <span class="tech-tag" data-lang-key="research-6-tech-1">3D Vision-Guided</span>
+                                <span class="tech-tag" data-lang-key="research-6-tech-2">Random Bin Picking</span>
                                 <span class="tech-tag" data-lang-key="research-6-tech-3">Robotic Coordination</span>
-                                <span class="tech-tag" data-lang-key="research-6-tech-4">LIEBHERR System</span>
-                                <span class="tech-tag">System Integration</span>
-                                <span class="tech-tag" data-lang-key="research-6-tech-5">Precision Control</span>
+                                <span class="tech-tag" data-lang-key="research-6-tech-4">Intelligent Grasp Planning Algorithms</span>
+                                <span class="tech-tag">Multi-Robot Integration</span>
+                                <span class="tech-tag" data-lang-key="research-6-tech-5">Closed-Loop Control</span>
                             </div>
                         </div>
 
@@ -661,28 +746,35 @@
                             <h4 data-lang-key="research-outcomes-title">Research Outcomes</h4>
                             <div class="outcomes-grid">
                                 <div class="outcome-card">
-                                    <div class="outcome-value">3D</div>
-                                    <div class="outcome-label" data-lang-key="research-6-outcome-1">Vision Technology</div>
+                                    <div class="outcome-value">up to ~1 m</div>
+                                    <div class="outcome-label" data-lang-key="research-6-outcome-1">Deep bin support</div>
                                 </div>
                                 <div class="outcome-card">
-                                    <div class="outcome-value" data-lang-key="research-6-outcome-2-val">Random</div>
-                                    <div class="outcome-label" data-lang-key="research-6-outcome-2">Picking System</div>
+                                    <div class="outcome-value" data-lang-key="research-6-outcome-2-val">0.6–7 s</div>
+                                    <div class="outcome-label" data-lang-key="research-6-outcome-2">Fast scan & planning</div>
                                 </div>
                                 <div class="outcome-card">
-                                    <div class="outcome-value" data-lang-key="research-6-outcome-3-val">High</div>
-                                    <div class="outcome-label" data-lang-key="research-6-outcome-3">Precision & Flexibility</div>
+                                    <div class="outcome-value" data-lang-key="research-6-outcome-3-val">~99%</div>
+                                    <div class="outcome-label" data-lang-key="research-6-outcome-3">Robot compatibility</div>
                                 </div>
                                 <div class="outcome-card">
-                                    <div class="outcome-value">LIEBHERR</div>
-                                    <div class="outcome-label" data-lang-key="research-6-outcome-4">International Partner</div>
+                                    <div class="outcome-value">≈98%</div>
+                                    <div class="outcome-label" data-lang-key="research-6-outcome-4">Collision avoidance</div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="detail-section">
-                            <h4 data-lang-key="research-partnership-title">Partnership & Impact</h4>
-                            <p class="related-pub" data-lang-key="research-6-partnership">International collaboration with LIEBHERR-Verzahntechnik GmbH (Germany) and PONGI Gear Expert CO., LTD. (Taiwan), strengthening Taiwan's competitiveness in smart automation.</p>
+                        <div class="project-details-expandable">
+                            <div class="detail-section">
+                                <h4 data-lang-key="research-partnership-title">Partnership & Impact</h4>
+                                <p class="related-pub" data-lang-key="research-6-partnership">International collaboration with LIEBHERR-Verzahntechnik GmbH (Germany) and PONGI Gear Expert CO., LTD. (Taiwan), strengthening Taiwan's competitiveness in smart automation.</p>
+                            </div>
                         </div>
+
+                        <button class="btn-expand-details">
+                            <span class="btn-text" data-lang-key="show-more">show-more</span>
+                            <span class="arrow"></span>
+                        </button>
                     </div>
                 </div>
             </article>
@@ -1094,8 +1186,9 @@
                 <div class="contact-card">
                     <div class="card-icon">🌐</div>
                     <h3 data-lang-key="contact-card-4-title">Languages</h3>
-                    <p data-lang-key="contact-card-4-value">Chinese (Native), English (Proficient)</p>
-                    <p class="card-note" data-lang-key="contact-card-4-note">TOEIC Score: 660 | Learning: Deutsch</p>
+                    <p data-lang-key="contact-card-4-value">Chinese (Native)</p>
+                    <p data-lang-key="contact-card-4-value">English (Proficient)</p>
+                    <p data-lang-key="contact-card-4-value">Deutsch (A1 learning)</p>
                 </div>
             </div>
 
@@ -1136,5 +1229,29 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const expandButtons = document.querySelectorAll('.btn-expand-details');
+
+            expandButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const project = this.closest('.research-project');
+                    if (!project) return;
+
+                    project.classList.toggle('details-expanded');
+
+                    // Update button text
+                    const textSpan = this.querySelector('.btn-text');
+                    const isExpanded = project.classList.contains('details-expanded');
+
+                    if (isExpanded) {
+                        textSpan.textContent = 'Show Less';
+                    } else {
+                        textSpan.textContent = 'Show More Details';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
