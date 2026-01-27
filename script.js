@@ -135,6 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ==================== 統計數字動畫 ====================
 function animateCounter(element, start, end, duration, suffix = '') {
     let startTime = null;
+    const originalText = element.textContent;
 
     const step = (currentTime) => {
         if (!startTime) startTime = currentTime;
@@ -153,31 +154,37 @@ function animateCounter(element, start, end, duration, suffix = '') {
     window.requestAnimationFrame(step);
 }
 
-// 觸發統計數字動畫
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const statValues = entry.target.querySelectorAll('.stat-value');
+// 初始化統計數字動畫（延遲到 initializePage 中調用）
+function initStatsAnimation() {
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const statValues = entry.target.querySelectorAll('.stat-value');
 
-            statValues.forEach(stat => {
-                const text = stat.textContent;
-                const numberMatch = text.match(/\d+/);
+                statValues.forEach(stat => {
+                    // 避免重複動畫
+                    if (stat.dataset.animated === 'true') return;
+                    stat.dataset.animated = 'true';
 
-                if (numberMatch) {
-                    const number = parseInt(numberMatch[0]);
-                    const suffix = text.replace(/\d+/, '');
-                    animateCounter(stat, 0, number, 1500, suffix);
-                }
-            });
+                    const text = stat.textContent;
+                    const numberMatch = text.match(/\d+/);
 
-            statsObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.5 });
+                    if (numberMatch) {
+                        const number = parseInt(numberMatch[0]);
+                        const suffix = text.replace(/\d+/, '');
+                        animateCounter(stat, 0, number, 1500, suffix);
+                    }
+                });
 
-const quickStats = document.querySelector('.quick-stats');
-if (quickStats) {
-    statsObserver.observe(quickStats);
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    const quickStats = document.querySelector('.quick-stats');
+    if (quickStats) {
+        statsObserver.observe(quickStats);
+    }
 }
 
 // ==================== YouTube 滾動自動播放 ====================
@@ -881,9 +888,6 @@ function initializePage() {
         observer.observe(el);
     });
 
-    // 觸發統計數字動畫
-    const quickStats = document.querySelector('.quick-stats');
-    if (quickStats) {
-        statsObserver.observe(quickStats);
-    }
+    // 初始化統計數字動畫（移除重複初始化）
+    initStatsAnimation();
 }
