@@ -1525,6 +1525,202 @@ body {
     margin: 0;
 }
 
+/* ==================== Special Experiences ==================== */
+.experiences-section {
+    background: var(--bg-secondary);
+}
+
+.experience-category {
+    margin-bottom: var(--spacing-xl);
+}
+
+.experience-category:last-child {
+    margin-bottom: 0;
+}
+
+.experience-category-title {
+    font-size: 1.75rem;
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+    position: relative;
+    padding-bottom: var(--spacing-sm);
+}
+
+.experience-category-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--color-accent);
+}
+
+/* International Scholar Hosting */
+.scholars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.scholar-card {
+    background: var(--bg-primary);
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.scholar-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+.scholar-photo {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.scholar-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.scholar-card:hover .scholar-photo img {
+    transform: scale(1.05);
+}
+
+.scholar-info {
+    padding: var(--spacing-lg);
+    text-align: center;
+}
+
+.scholar-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.scholar-title {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.scholar-affiliation {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* Exchange Experience */
+.exchange-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+}
+
+.exchange-card {
+    background: var(--bg-primary);
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.exchange-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+.exchange-photo {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.exchange-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.exchange-card:hover .exchange-photo img {
+    transform: scale(1.05);
+}
+
+/* Dual Photos Layout */
+.exchange-photos-dual {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0;
+    overflow: hidden;
+}
+
+.exchange-photos-dual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.exchange-card:hover .exchange-photos-dual img {
+    transform: scale(1.05);
+}
+
+.exchange-info {
+    padding: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.exchange-institution {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.4;
+}
+
+.exchange-host {
+    margin-bottom: var(--spacing-sm);
+}
+
+.exchange-host-name {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--color-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.exchange-host-title {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+.exchange-location {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-style: italic;
+}
+
 /* ==================== Footer ==================== */
 .footer {
     background: var(--bg-dark);
@@ -1679,6 +1875,22 @@ body {
 
     .expertise-grid {
         grid-template-columns: 1fr;
+    }
+
+    .scholars-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .exchange-card {
+        grid-template-columns: 1fr;
+    }
+
+    .exchange-photo {
+        height: 300px;
+    }
+
+    .exchange-photos-dual {
+        height: 400px;
     }
 
     .footer-content {
