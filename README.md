@@ -1,114 +1,114 @@
 # Ting-Lun Su - Academic Portfolio
 
-這是蘇挺綸的學術作品集網站，展示其在智能製造、AI 機器人技術與產學合作領域的研究成果。
+This is Ting-Lun Su's academic portfolio website, showcasing research achievements in intelligent manufacturing, AI robotics, and industry-academia collaboration.
 
-## 📖 關於本網站
+## 📖 About This Website
 
-本網站採用研究機構專業風格設計（靈感來自 Max Planck Institute），專為申請研究所與學術交流打造。網站完整記錄了從大學階段至今的研究歷程，包含 6 個產學合作專案、5 篇學術論文、2 項專利，以及超過 15 項競賽獎項。
+This website adopts a professional research institute design style (inspired by Max Planck Institute), specifically crafted for graduate school applications and academic exchanges. The website comprehensively documents the research journey from undergraduate studies to present, featuring 6 industry-academia collaborative projects, 5 academic publications, 2 patents, and over 15 competition awards.
 
-### 🎯 網站特色
+### 🎯 Website Features
 
-- **研究機構專業設計** - 科學感灰階配色、精緻排版、符合學術規範
-- **影片展示系統** - 整合 YouTube 影片展示實際研究成果
-- **完整響應式設計** - 支援桌面、平板、手機等多種裝置
-- **列印友善** - 可直接列印為完整作品集文件
-- **多語言準備** - 預留國際化架構，方便未來擴展
+- **Professional Research Institute Design** - Scientific grayscale color scheme, refined typography, academic standards compliant
+- **Video Demonstration System** - Integrated YouTube videos showcasing actual research outcomes
+- **Fully Responsive Design** - Supports desktop, tablet, mobile, and various devices
+- **Print-Friendly** - Can be directly printed as a complete portfolio document
+- **Multilingual Ready** - Pre-configured internationalization architecture for future expansion
 
-## 🔬 研究領域
+## 🔬 Research Areas
 
-網站展示的主要研究方向包括：
+The main research directions showcased on the website include:
 
-### AI 驅動機器人與智能製造
-- 視覺量測檢測工作站開發（整合 LLM 與 MCP 協議）
-- 智慧 CNC 彈性製造工廠（20 台 CNC、10 台機械手臂）
-- 自動化機械手臂鍛造噴塗系統（蟻群演算法路徑規劃）
+### AI-Driven Robotics & Intelligent Manufacturing
+- Visual Measurement Inspection Station Development (Integrating LLM & MCP Protocol)
+- Smart CNC Flexible Manufacturing Factory (20 CNC machines, 10 robotic arms)
+- Automated Robotic Arm Forging Spraying System (Ant Colony Optimization path planning)
 
-### 大型語言模型應用
-- LLM 整合與 MCP（Model Context Protocol）應用
-- 生成式 AI 導航輔助系統
-- 混合模型架構優化（降低 33.9% Token 成本）
+### Large Language Model Applications
+- LLM Integration & MCP (Model Context Protocol) Applications
+- Generative AI Navigation Assistance System
+- Hybrid Model Architecture Optimization (33.9% Token Cost Reduction)
 
-### 計算機視覺與品質工程
-- AI 視覺檢測系統（YOLO 架構）
-- CNC 切屑纏繞自動檢測
-- 3D 視覺導引隨機取料系統
+### Computer Vision & Quality Engineering
+- AI Visual Detection System (YOLO Architecture)
+- CNC Chip Entanglement Automatic Detection
+- 3D Vision-Guided Random Bin Picking System
 
-## 📊 網站架構
+## 📊 Website Structure
 
-### 主要區塊
+### Main Sections
 
-1. **Overview** - 研究者簡介、研究興趣、統計數據
-2. **Awards & Honors** - 按年份整理的競賽獲獎紀錄
-3. **Research Projects** - 6 個產學合作專案詳細介紹（含影片展示）
-4. **Publications** - 5 篇期刊與會議論文
-5. **Patents** - 2 項已核准專利
-6. **Technical Expertise** - 技術能力與認證
-7. **Laboratory** - 實驗室環境介紹
-8. **Special Experiences** - 國際學者接待與交流經驗
-9. **Contact** - 聯絡方式與研究聲明
+1. **Overview** - Researcher profile, research interests, statistics
+2. **Awards & Honors** - Competition awards organized by year
+3. **Research Projects** - Detailed introduction to 6 industry-academia projects (with video demonstrations)
+4. **Publications** - 5 journal and conference papers
+5. **Patents** - 2 granted patents
+6. **Technical Expertise** - Technical skills and certifications
+7. **Laboratory** - Laboratory environment introduction
+8. **Special Experiences** - International scholar hosting and exchange experiences
+9. **Contact** - Contact information and research statement
 
-## 🏆 研究亮點
+## 🏆 Research Highlights
 
-### 產業實踐成果
-- **視覺檢測系統** - 單件檢測時間減少 52.3%、不良率降低 22.7%
-- **智慧工廠專案** - 人力需求降低 80%、已於 2024/12 進入量產
-- **鍛造噴塗系統** - 生產效率提升 27%、鍛造品質改善 91%（65 PPM）
+### Industrial Implementation Results
+- **Visual Inspection System** - 52.3% reduction in single-part inspection time, 22.7% defect rate reduction
+- **Smart Factory Project** - 80% manpower reduction, entered mass production in December 2024
+- **Forging Spraying System** - 27% production efficiency improvement, 91% forging quality enhancement (65 PPM)
 
-### 學術發表
-- **Q2 國際期刊論文** - The International Journal of Advanced Manufacturing Technology（IF: 3.4）
-- **TAIROA 期刊論文** - 自動化智能與機器人學刊
-- **多篇會議論文** - CSMMT、ILT、GTEA
+### Academic Publications
+- **Q2 International Journal Paper** - The International Journal of Advanced Manufacturing Technology (IF: 3.4)
+- **TAIROA Journal Paper** - Journal of Automation Intelligence and Robotics
+- **Multiple Conference Papers** - CSMMT, ILT, GTEA
 
-### 智慧財產
-- **發明專利** TW I-891383 - 香菇切柄機（2025/05 核准）
-- **新型專利** TW M-659734 - 香菇切柄機（2024/08 核准）
-- 已商業化應用於 3 家農場
+### Intellectual Property
+- **Invention Patent** TW I-891383 - Mushroom Stem Cutting Machine (Granted May 2025)
+- **Utility Model Patent** TW M-659734 - Mushroom Stem Cutting Machine (Granted August 2024)
+- Commercialized and adopted by 3 farms
 
-## 🛠 技術棧
+## 🛠 Technology Stack
 
-### 核心技術
-- **AI/ML** - YOLO、蟻群演算法、貝葉斯優化、LLM 整合
-- **機器人技術** - 機械手臂控制、3D 視覺導引、路徑規劃
-- **工業自動化** - CNC 系統、PLC 控制、工廠自動化、AIoT
-- **程式語言** - Python、C#/C++、Matlab、PLC Programming
+### Core Technologies
+- **AI/ML** - YOLO, Ant Colony Optimization, Bayesian Optimization, LLM Integration
+- **Robotics Technology** - Robotic Arm Control, 3D Vision Guidance, Path Planning
+- **Industrial Automation** - CNC Systems, PLC Control, Factory Automation, AIoT
+- **Programming Languages** - Python, C#/C++, Matlab, PLC Programming
 
-### 開發工具
-- **設計與模擬** - SolidWorks、模具設計、塑膠射出分析
-- **控制系統** - PLC、CNC 通訊、機器人控制
-- **視覺系統** - 電腦視覺、影像處理、深度學習
+### Development Tools
+- **Design & Simulation** - SolidWorks, Mold Design, Plastic Injection Analysis
+- **Control Systems** - PLC, CNC Communication, Robot Control
+- **Vision Systems** - Computer Vision, Image Processing, Deep Learning
 
-## 🌐 國際交流
+## 🌐 International Collaboration
 
-### 國際學者接待
-- **捷克學者** - Petr Sittner 教授（9 天校內行程）
-- **越南學者** - Hoang An Quoc 教授（4 天校內行程）
+### International Scholar Hosting
+- **Czech Scholar** - Professor Petr Sittner (9-day on-campus itinerary)
+- **Vietnamese Scholar** - Professor Hoang An Quoc (4-day on-campus itinerary)
 
-### 海外交流經驗
-- **日本諏訪大學** - 與副校長 Masahide Oshima 教授進行學術交流
-- **SAKURA SCIENCE** - 日本科學技術振興機構會員
+### Overseas Exchange Experience
+- **Suwa University of Science, Japan** - Academic exchange with Vice President/Professor Masahide Oshima
+- **SAKURA SCIENCE** - Member of Japan Science and Technology Agency program
 
-## 📜 認證與資格
+## 📜 Certifications & Qualifications
 
-- AI 應用規劃師（iPAS）
-- 工業配線乙級
-- 太陽光電設置乙級
-- 室內配線丙級
+- AI Application Planner (iPAS)
+- Industrial Wiring Class B
+- Photovoltaic Installation Class B
+- Commercial Wiring Class C
 - TOEIC 660
 
-## 🎓 學術目標
+## 🎓 Academic Goals
 
-追求機械工程/自動化工程碩士學位，持續深化 AI 驅動機器人、智能製造系統，以及 LLM 應用與工業自動化整合的研究。
+Pursuing a Master's degree in Mechanical Engineering/Automation Engineering to advance research in AI-driven robotics, intelligent manufacturing systems, and the integration of LLM applications with industrial automation.
 
-## 💻 網站技術實作
+## 💻 Website Technical Implementation
 
-本網站採用純靜態架構：
-- **前端技術** - HTML5、CSS3、Vanilla JavaScript（ES6+）
-- **設計模式** - BEM-like CSS 命名、CSS 自訂屬性
-- **動畫效果** - Intersection Observer API、CSS transitions
-- **部署平台** - GitHub Pages
-- **無建置流程** - 開箱即用，無需編譯
+This website adopts a pure static architecture:
+- **Frontend Technologies** - HTML5, CSS3, Vanilla JavaScript (ES6+)
+- **Design Patterns** - BEM-like CSS naming, CSS custom properties
+- **Animation Effects** - Intersection Observer API, CSS transitions
+- **Deployment Platform** - GitHub Pages
+- **No Build Process** - Ready to use out of the box, no compilation required
 
-## 📞 聯絡方式
+## 📞 Contact Information
 
 - **Email** - s9917214@gmail.com
 - **ORCID** - [0009-0008-8028-896X](https://orcid.org/0009-0008-8028-896X)
@@ -119,4 +119,4 @@
 
 > "Bridging AI innovation with industrial reality through intelligent automation and collaborative research."
 
-**最後更新** - January 2025
+**Last Updated** - January 2025
